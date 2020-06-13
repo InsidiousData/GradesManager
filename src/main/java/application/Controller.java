@@ -8,16 +8,16 @@ import javafx.scene.control.ChoiceBox;
 public class Controller {
 
     @FXML
-    private ChoiceBox yearChoice;
+    private ChoiceBox<String> yearChoice;
 
     @FXML
-    private ChoiceBox sessionChoice;
+    private ChoiceBox<String> sessionChoice;
 
     @FXML
-    private ChoiceBox subjectChoice;
+    private ChoiceBox<String> subjectChoice;
 
     @FXML
-    private ChoiceBox courseChoice;
+    private ChoiceBox<String> courseChoice;
 
     private Model model;
 
@@ -66,12 +66,12 @@ public class Controller {
     }
 
     public String getSessionChoiceValue() {
-        String s = (String) sessionChoice.getValue();
+        String s = sessionChoice.getValue();
         return s;
     }
 
     public String getCourseChoiceValue() {
-        String s = (String) courseChoice.getValue();
+        String s = courseChoice.getValue();
         return s;
     }
 
