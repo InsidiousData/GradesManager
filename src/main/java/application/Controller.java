@@ -1,22 +1,26 @@
 package application;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+
+import java.util.ArrayList;
 
 
 public class Controller {
 
     @FXML
-    private ChoiceBox<String> yearChoice;
+    private ComboBox<Integer> yearChoice;
 
     @FXML
-    private ChoiceBox<String> sessionChoice;
+    private ComboBox<String> sessionChoice;
 
     @FXML
-    private ChoiceBox<String> subjectChoice;
+    private ComboBox<String> subjectChoice;
 
     @FXML
-    private ChoiceBox<String> courseChoice;
+    private ComboBox<Integer> courseChoice;
 
     private Model model;
     private SQLConnection sql;
@@ -31,12 +35,12 @@ public class Controller {
 
     public void yearChoiceLoader() {
         yearChoice.setItems(model.getYearObservableList(sql));
-        yearChoice.setOnAction((event) -> subjectChoiceLoader());
+        yearChoice.setOnAction((event) -> updateAllChoices());
     }
 
     public void sessionChoiceLoader() {
         sessionChoice.setItems(model.getSessionObservableList(sql));
-        sessionChoice.setOnAction((event) -> subjectChoiceLoader());
+        sessionChoice.setOnAction((event) -> updateAllChoices());
     }
 
     public void subjectChoiceLoader() {
@@ -45,10 +49,12 @@ public class Controller {
             System.out.println("Subject choices loaded.");
             int year = getYearChoiceValue();
             String session = getSessionChoiceValue();
-                subjectChoice.setItems(model.getSubjectObservableList(sql, year, session));
+            long startTime = System.nanoTime();
+            subjectChoice.setItems(model.getSubjectObservableList(sql, year, session));
+            long endTime = System.nanoTime();
+            System.out.println(endTime-startTime);
         }
-        subjectChoice.setOnAction((event) -> courseChoiceLoader());
-
+        subjectChoice.setOnAction((event) -> updateAllChoices());
     }
 
     public void courseChoiceLoader() {
@@ -64,8 +70,13 @@ public class Controller {
 
     }
 
+    private void updateAllChoices() {
+        subjectChoiceLoader();
+        courseChoiceLoader();
+    }
+
     public int getYearChoiceValue() {
-        int i = Integer.parseInt(yearChoice.getSelectionModel().getSelectedItem());
+        int i = yearChoice.getSelectionModel().getSelectedItem();
         return i;
     }
 
@@ -79,8 +90,8 @@ public class Controller {
         return s;
     }
 
-    public String getCourseChoiceValue() {
-        String s = courseChoice.getValue();
+    public int getCourseChoiceValue() {
+        int s = courseChoice.getValue();
         return s;
     }
 

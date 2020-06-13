@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -11,31 +12,47 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GradesManager" textAlignment="CENTER">
                <font>
-                  <Font name="Roboto Light" size="22.0" />
+                  <Font name="Roboto Light" size="32.0" />
                </font></Text>
          </children>
       </TextFlow>
-      <VBox prefHeight="615.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="600.0" spacing="10.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="600.0" spacing="10.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" />
-                  <ChoiceBox fx:id="yearChoice" prefWidth="100.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Session:" />
-                  <ChoiceBox fx:id="sessionChoice" prefWidth="50.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
-                  <ChoiceBox fx:id="subjectChoice" prefWidth="100.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course:" />
-                  <ChoiceBox fx:id="courseChoice" prefWidth="75.0" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" />
+            <ComboBox fx:id="yearChoice" prefWidth="100.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Session:" />
+            <ComboBox fx:id="sessionChoice" prefWidth="80.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
+            <ComboBox fx:id="subjectChoice" prefWidth="150.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course:" />
+            <ComboBox fx:id="courseChoice" prefWidth="80.0" />
          </children>
-      </VBox>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.2" minWidth="10.0" prefWidth="300.2" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.59999999999997" minWidth="10.0" prefWidth="300.59999999999997" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="125.39998474121094" minHeight="0.0" prefHeight="62.400000000000006" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="132.8" minHeight="7.400015258789068" prefHeight="70.4" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <BarChart>
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </GridPane>
    </children>
 </VBox>

@@ -29,6 +29,8 @@ public class SQLConnection {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             return rs;
+
+
     }
 }
 
