@@ -24,32 +24,11 @@ public class SQLConnection {
         }
 
     }
-    public ResultSet getResultSet() {
-        String selectAllQuery = "SELECT * FROM UBC_ALL_DATA;";
-        ResultSet rs = null;
 
-        try {
+    public ResultSet getQuery(String query) throws SQLException {
             Statement stmt = conn.createStatement();
-            rs = stmt.executeQuery(selectAllQuery);
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return rs;
+            ResultSet rs = stmt.executeQuery(query);
+            return rs;
     }
-
-    public static void main(String[] args) {
-        SQLConnection sqlconn = new SQLConnection();
-        sqlconn.connect();
-        ResultSet rs = sqlconn.getResultSet();
-        for (int i = 0; i < 20; i++) {
-            try {
-                System.out.println(rs.getString(2));
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-        }
-    }
+}
 

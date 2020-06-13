@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <TextFlow prefHeight="52.0" prefWidth="600.0" textAlignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GradesManager" />
+         </children>
+      </TextFlow>
+      <VBox prefHeight="615.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <ChoiceBox fx:id="yearChoice" prefWidth="100.0" />
+                  <ChoiceBox fx:id="sessionChoice" prefWidth="50.0" />
+                  <ChoiceBox fx:id="subjectChoice" prefWidth="150.0" />
+                  <ChoiceBox fx:id="courseChoice" prefWidth="75.0" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

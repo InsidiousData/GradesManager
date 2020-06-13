@@ -12,15 +12,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("application.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/application.fxml"));
+        Parent root = loader.load();
+        //Parent root = FXMLLoader.load(getClass().getResource("application.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
     }
 
-
     public static void main(String[] args) throws IOException {
         launch(args);
-
     }
 }
