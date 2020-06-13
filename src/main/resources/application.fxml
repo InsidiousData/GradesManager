@@ -9,21 +9,31 @@
    <children>
       <TextFlow prefHeight="52.0" prefWidth="600.0" textAlignment="CENTER">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GradesManager" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GradesManager" textAlignment="CENTER">
+               <font>
+                  <Font name="Roboto Light" size="22.0" />
+               </font></Text>
          </children>
       </TextFlow>
-      <VBox prefHeight="615.0" prefWidth="600.0">
+      <VBox prefHeight="615.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="600.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="600.0" spacing="10.0">
                <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Year:" />
                   <ChoiceBox fx:id="yearChoice" prefWidth="100.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Session:" />
                   <ChoiceBox fx:id="sessionChoice" prefWidth="50.0" />
-                  <ChoiceBox fx:id="subjectChoice" prefWidth="150.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Subject:" />
+                  <ChoiceBox fx:id="subjectChoice" prefWidth="100.0" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course:" />
                   <ChoiceBox fx:id="courseChoice" prefWidth="75.0" />
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

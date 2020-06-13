@@ -8,11 +8,9 @@ import java.sql.SQLException;
 
 public class Model {
 
-    public ObservableList<String> getYearObservableList() {
+    public ObservableList<String> getYearObservableList(SQLConnection sql) {
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
-            SQLConnection sql = new SQLConnection();
-            sql.connect();
             ResultSet rs = sql.getQuery("SELECT DISTINCT Year FROM UBC_ALL_DATA;");
             while (rs.next() == true) {
                 String year = rs.getString("Year");
@@ -25,11 +23,9 @@ public class Model {
         }
     }
 
-    public ObservableList<String> getSessionObservableList() {
+    public ObservableList<String> getSessionObservableList(SQLConnection sql) {
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
-            SQLConnection sql = new SQLConnection();
-            sql.connect();
             ResultSet rs = sql.getQuery("SELECT DISTINCT Session FROM UBC_ALL_DATA;");
             while (rs.next() == true) {
                 String session = rs.getString("Session");
@@ -42,11 +38,9 @@ public class Model {
         }
     }
 
-    public ObservableList<String> getSubjectObservableList(int year, String session) {
+    public ObservableList<String> getSubjectObservableList(SQLConnection sql, int year, String session) {
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
-            SQLConnection sql = new SQLConnection();
-            sql.connect();
             ResultSet rs = sql.getQuery("SELECT DISTINCT Subject FROM UBC_ALL_DATA WHERE Year=" + year + " AND Session='" + session +"';");
             while (rs.next() == true) {
                 String subject = rs.getString("Subject");
@@ -64,11 +58,9 @@ public class Model {
             return list;
     }
 
-    public ObservableList<String> getCourseObservableList(int year, String session, String subject) {
+    public ObservableList<String> getCourseObservableList(SQLConnection sql, int year, String session, String subject) {
         ObservableList<String> list = FXCollections.observableArrayList();
         try {
-            SQLConnection sql = new SQLConnection();
-            sql.connect();
             ResultSet rs = sql.getQuery("SELECT DISTINCT Course FROM UBC_ALL_DATA WHERE Year="
                     + year + " AND Session='" + session +"' AND Subject='" + subject + "';");
             while (rs.next() == true) {

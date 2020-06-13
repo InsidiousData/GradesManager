@@ -1,9 +1,8 @@
 package application;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+
 
 public class Controller {
 
@@ -20,53 +19,63 @@ public class Controller {
     private ChoiceBox<String> courseChoice;
 
     private Model model;
+    private SQLConnection sql;
 
     public void initialize() {
         model = new Model();
+        sql = new SQLConnection();
+        sql.connect();
         yearChoiceLoader();
         sessionChoiceLoader();
-        subjectChoiceLoader();
     }
 
     public void yearChoiceLoader() {
-        yearChoice.setItems(model.getYearObservableList());
-        yearChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                subjectChoiceLoader();
-            }
-        });
+        yearChoice.setItems(model.getYearObservableList(sql));
+        yearChoice.setOnAction((event) -> subjectChoiceLoader());
     }
 
     public void sessionChoiceLoader() {
-        sessionChoice.setItems(model.getSessionObservableList());
-        sessionChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                subjectChoiceLoader();
-            }
-        });
+        sessionChoice.setItems(model.getSessionObservableList(sql));
+        sessionChoice.setOnAction((event) -> subjectChoiceLoader());
     }
 
     public void subjectChoiceLoader() {
-//        if ((yearChoice.getSelectionModel().getSelectedItem() == null) ||
-//                (sessionChoice.getSelectionModel().getSelectedItem() == null)) {
-//            subjectChoice.setItems(model.getSubjectObservableList());
-//        } else {
-        if ((yearChoice.getSelectionModel().getSelectedItem() != null) ||
+        if ((yearChoice.getSelectionModel().getSelectedItem() != null) &&
                (sessionChoice.getSelectionModel().getSelectedItem() != null)) {
             System.out.println("Subject choices loaded.");
             int year = getYearChoiceValue();
             String session = getSessionChoiceValue();
-                subjectChoice.setItems(model.getSubjectObservableList(year, session));
+                subjectChoice.setItems(model.getSubjectObservableList(sql, year, session));
         }
+        subjectChoice.setOnAction((event) -> courseChoiceLoader());
+
+    }
+
+    public void courseChoiceLoader() {
+        if ((yearChoice.getSelectionModel().getSelectedItem() != null) &&
+                (sessionChoice.getSelectionModel().getSelectedItem() != null) &&
+                (subjectChoice.getSelectionModel().getSelectedItem() != null)) {
+            System.out.println("Course choices loaded.");
+            int year = getYearChoiceValue();
+            String session = getSessionChoiceValue();
+            String subject = getSubjectChoiceValue();
+            courseChoice.setItems(model.getCourseObservableList(sql, year, session, subject));
+        }
+
     }
 
     public int getYearChoiceValue() {
-        int i = Integer.parseInt(yearChoice.getSelectionModel().getSelectedItem().toString());
+        int i = Integer.parseInt(yearChoice.getSelectionModel().getSelectedItem());
         return i;
     }
 
     public String getSessionChoiceValue() {
         String s = sessionChoice.getValue();
+        return s;
+    }
+
+    public String getSubjectChoiceValue() {
+        String s = subjectChoice.getValue();
         return s;
     }
 
