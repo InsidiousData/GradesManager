@@ -1,11 +1,8 @@
 package application;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-
-import java.util.ArrayList;
+import javafx.scene.text.Text;
 
 
 public class Controller {
@@ -22,85 +19,82 @@ public class Controller {
     @FXML
     private ComboBox<Integer> courseChoice;
 
+    @FXML
+    private ComboBox<String> sectionChoice;
+
+    @FXML
+    private Text courseLabel;
+    @FXML
+    private Text professorLabel;
+    @FXML
+    private Text enrolledLabel;
+    @FXML
+    private Text averageLabel;
+    @FXML
+    private Text stdDevLabel;
+    @FXML
+    private Text highLabel;
+    @FXML
+    private Text lowLabel;
+    @FXML
+    private Text passLabel;
+    @FXML
+    private Text failLabel;
+    @FXML
+    private Text withdrewLabel;
+    @FXML
+    private Text auditLabel;
+    @FXML
+    private Text otherLabel;
+
     private Model model;
-    private SQLConnection sql;
 
     public void initialize() {
         model = new Model();
-        sql = new SQLConnection();
-        sql.connect();
-        yearChoiceLoader();
-        sessionChoiceLoader();
+        setupModelListeners();
+        yearChoice.setItems(model.getYearList());
+        sessionChoice.setItems(model.getSessionList());
     }
 
-    public void yearChoiceLoader() {
-        yearChoice.setItems(model.getYearObservableList(sql));
-        yearChoice.setOnAction((event) -> updateAllChoices());
+    public void setupModelListeners() {
+        yearChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            model.setSelectedYear(newValue);
+            model.updateModel();
+            updateView();
+        });
+        sessionChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            model.setSelectedSession(newValue);
+            model.updateModel();
+            updateView();
+        });
+        subjectChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                model.setSelectedSubject(newValue);
+            }
+            model.updateModel();
+            updateView();
+        });
+        courseChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                model.setSelectedCourse(newValue);
+            }
+            model.updateModel();
+            updateView();
+        });
+        sectionChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                model.setSelectedSection(newValue);
+            }
+            model.updateModel();
+            updateView();
+        });
     }
 
-    public void sessionChoiceLoader() {
-        sessionChoice.setItems(model.getSessionObservableList(sql));
-        sessionChoice.setOnAction((event) -> updateAllChoices());
+    public void updateView() {
+        subjectChoice.setItems(model.getSubjectList());
+        courseChoice.setItems(model.getCourseList());
+        sectionChoice.setItems(model.getSectionList());
     }
-
-    public void subjectChoiceLoader() {
-        if ((yearChoice.getSelectionModel().getSelectedItem() != null) &&
-               (sessionChoice.getSelectionModel().getSelectedItem() != null)) {
-            System.out.println("Subject choices loaded.");
-            int year = getYearChoiceValue();
-            String session = getSessionChoiceValue();
-            long startTime = System.nanoTime();
-            subjectChoice.setItems(model.getSubjectObservableList(sql, year, session));
-            long endTime = System.nanoTime();
-            System.out.println(endTime-startTime);
-        }
-        subjectChoice.setOnAction((event) -> updateAllChoices());
-    }
-
-    public void courseChoiceLoader() {
-        if ((yearChoice.getSelectionModel().getSelectedItem() != null) &&
-                (sessionChoice.getSelectionModel().getSelectedItem() != null) &&
-                (subjectChoice.getSelectionModel().getSelectedItem() != null)) {
-            System.out.println("Course choices loaded.");
-            int year = getYearChoiceValue();
-            String session = getSessionChoiceValue();
-            String subject = getSubjectChoiceValue();
-            courseChoice.setItems(model.getCourseObservableList(sql, year, session, subject));
-        }
-
-    }
-
-    private void updateAllChoices() {
-        subjectChoiceLoader();
-        courseChoiceLoader();
-    }
-
-    public int getYearChoiceValue() {
-        int i = yearChoice.getSelectionModel().getSelectedItem();
-        return i;
-    }
-
-    public String getSessionChoiceValue() {
-        String s = sessionChoice.getValue();
-        return s;
-    }
-
-    public String getSubjectChoiceValue() {
-        String s = subjectChoice.getValue();
-        return s;
-    }
-
-    public int getCourseChoiceValue() {
-        int s = courseChoice.getValue();
-        return s;
-    }
-
-        //TODO: use this listener structure to create dependent ChoiceBoxes
-        //yearChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-          //  public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-          //      System.out.println("Testing");
-
-
 
 }
 

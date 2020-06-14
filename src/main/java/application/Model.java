@@ -3,88 +3,141 @@ package application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class Model {
 
-    public ObservableList<Integer> getYearObservableList(SQLConnection sql) {
-        ObservableList<Integer> list = FXCollections.observableArrayList();
-        try {
-            ResultSet rs = sql.getQuery("SELECT DISTINCT Year FROM UBC_ALL_DATA;");
-            while (rs.next() == true) {
-                int year = rs.getInt("Year");
-                list.add(year);
-            }
-            return list;
+    //Selection fields
+    private int selectedYear;
+    private String selectedSession;
+    private String selectedSubject;
+    private int selectedCourse;
+    private String selectedSection;
+
+    //Selection lists
+    private ObservableList<Integer> yearList;
+    private ObservableList<String> sessionList;
+    private ObservableList<String> subjectList;
+    private ObservableList<Integer> courseList;
+    private ObservableList<String> sectionList;
+
+    //Statistics for selected course
+    private String courseTitle;
+    private String detail;
+    private String professor;
+    private int enrolled;
+    private double average;
+    private double stdDev;
+    private int highestGrade;
+    private int lowestGrade;
+    private int passCount;
+    private int failCount;
+    private int withdrewCount;
+    private int auditCount;
+    private int otherCount;
+
+    private SQLConnection sql;
+
+    public Model() {
+        sql = new SQLConnection();
+        updateYearList();
+        updateSessionList();
+        subjectList = FXCollections.observableArrayList();
+        courseList = FXCollections.observableArrayList();
+        sectionList = FXCollections.observableArrayList();
+    }
+
+    public void updateYearList() {
+        yearList = sql.getYearList();
+    }
+
+    public int getSelectedYear() {
+        return selectedYear;
+    }
+
+    public String getSelectedSession() {
+        return selectedSession;
+    }
+
+    public void updateSessionList() {
+        sessionList = sql.getSessionList();
+    }
+
+    public void updateSubjectList() {
+        if ((selectedYear != 0) && (selectedSession != null)) {
+            subjectList = sql.getSubjectList(selectedYear, selectedSession);
         }
-        catch(SQLException e) {
-            return list;
+        else {
+            subjectList.clear();
         }
     }
 
-    public ObservableList<String> getSessionObservableList(SQLConnection sql) {
-        ObservableList<String> list = FXCollections.observableArrayList();
-        try {
-            ResultSet rs = sql.getQuery("SELECT DISTINCT Session FROM UBC_ALL_DATA;");
-            while (rs.next() == true) {
-                String session = rs.getString("Session");
-                list.add(session);
-            }
-            return list;
+    public void updateCourseList() {
+        if ((selectedYear != 0) && (selectedSession != null) && (selectedSubject != null)) {
+            courseList = sql.getCourseList(selectedYear, selectedSession, selectedSubject);
         }
-        catch(SQLException e) {
-            return list;
+        else {
+            courseList.clear();
         }
     }
 
-    public ObservableList<String> getSubjectObservableList(SQLConnection sql, int year, String session) {
-        try {
-            ObservableList<String> list = FXCollections.observableArrayList();
-            ResultSet rs = sql.getQuery("SELECT DISTINCT Subject FROM UBC_ALL_DATA WHERE Year=" + year + " AND Session='" + session +"';");
-            while (rs.next() == true) {
-                String subject = rs.getString("Subject");
-                list.add(subject);
-            }
-            System.out.println(list);
-            return list;
+    public void updateSectionList() {
+        if ((selectedYear != 0) && (selectedSession != null) && (selectedSubject != null) && (selectedCourse != 0)) {
+            sectionList = sql.getSectionList(selectedYear, selectedSession, selectedSubject, selectedCourse);
         }
-        catch(SQLException e) {
-            e.printStackTrace();
-        }
-        return FXCollections.observableArrayList();
-    }
-
-    public ObservableList<String> getSubjectObservableList() {
-        ObservableList<String> list = FXCollections.observableArrayList();
-            return list;
-    }
-
-    public ObservableList<Integer> getCourseObservableList(SQLConnection sql, int year, String session, String subject) {
-        ObservableList<Integer> list = FXCollections.observableArrayList();
-        try {
-            ResultSet rs = sql.getQuery("SELECT DISTINCT Course FROM UBC_ALL_DATA WHERE Year="
-                    + year + " AND Session='" + session +"' AND Subject='" + subject + "';");
-            while (rs.next() == true) {
-                int course = rs.getInt("Course");
-                list.add(course);
-            }
-            return list;
-        }
-        catch(SQLException e) {
-            return list;
+        else {
+            sectionList.clear();
         }
     }
 
-//    public static void main(String[] args) {
-//        SQLConnection sql = new SQLConnection();
-//        sql.connect();
-//        Model model = new Model();
-//        long startTime = System.nanoTime();
-//        model.getSubjectObservableList(sql, 2000, "W");
-//        long endTime = System.nanoTime();
-//        long duration = (endTime - startTime);
-//        System.out.println(duration);
-//    }
+    public void setSelectedYear(int selectedYear) {
+        this.selectedYear = selectedYear;
+    }
+
+    public void setSelectedSession(String selectedSession) {
+        this.selectedSession = selectedSession;
+    }
+
+    public void setSelectedSubject(String selectedSubject) {
+        this.selectedSubject = selectedSubject;
+    }
+
+    public void setSelectedCourse(int selectedCourse) {
+        this.selectedCourse = selectedCourse;
+    }
+
+    public void setSelectedSection(String selectedSection) {
+        this.selectedSection = selectedSection;
+    }
+
+    public ObservableList<Integer> getYearList() {
+        return yearList;
+    }
+
+    public ObservableList<String> getSessionList() {
+        return sessionList;
+    }
+
+    public ObservableList<String> getSubjectList() {
+        return subjectList;
+    }
+
+    public ObservableList<Integer> getCourseList() {
+        return courseList;
+    }
+
+    public ObservableList<String> getSectionList() {
+        return sectionList;
+    }
+
+    public void updateModel() {
+        updateSubjectList();
+        updateCourseList();
+        updateSectionList();
+
+        sql.getCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse, selectedSection, "Title");
+
+
+    }
+
+
 }
+
