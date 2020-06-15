@@ -65,22 +65,25 @@ public class Controller {
         sessionChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {model.setSelectedSession(newValue);}
             model.updateLists();
-            System.out.println("test");
+            model.updateData();
             updateView();
         });
         subjectChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {model.setSelectedSubject(newValue);}
             model.updateLists();
+            model.updateData();
             updateView();
         });
         courseChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {model.setSelectedCourse(newValue);}
             model.updateLists();
+            model.updateData();
             updateView();
         });
         sectionChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {model.setSelectedSection(newValue);}
             model.updateLists();
+            model.updateData();
             updateView();
         });
     }
@@ -89,6 +92,44 @@ public class Controller {
         subjectChoice.setItems(model.getSubjectList());
         courseChoice.setItems(model.getCourseList());
         sectionChoice.setItems(model.getSectionList());
+
+        courseLabel.setText(model.getCourseTitle());
+        professorLabel.setText(model.getProfessor());
+        enrolledLabel.setText(model.getEnrolled());
+        averageLabel.setText((model.getAverage()));
+        stdDevLabel.setText(model.getStdDev());
+        highLabel.setText(model.getHighestGrade());
+        lowLabel.setText(model.getLowestGrade());
+        passLabel.setText(model.getPassCount());
+        failLabel.setText(model.getFailCount());
+        withdrewLabel.setText(model.getWithdrewCount());
+        auditLabel.setText(model.getAuditCount());
+        otherLabel.setText(model.getOtherCount());
+    }
+
+    public void updateCourseLabel() {
+        if (model.getCourseTitle() == null) {
+            courseLabel.setText("");
+        }
+        else {
+            courseLabel.setText(model.getCourseTitle());
+        }
+    }
+    public void updateProfessorLabel() {
+        if (model.getProfessor() == null) {
+            courseLabel.setText("");
+        }
+        else {
+            courseLabel.setText(model.getProfessor());
+        }
+    }
+    public void updateEnrolled() {
+        if (model.getEnrolled() == null) {
+            courseLabel.setText("");
+        }
+        else {
+            courseLabel.setText(model.getCourseTitle());
+        }
     }
 
 

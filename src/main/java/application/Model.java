@@ -25,16 +25,16 @@ public class Model {
     private String courseTitle;
     private String detail;
     private String professor;
-    private int enrolled;
-    private double average;
-    private double stdDev;
-    private int highestGrade;
-    private int lowestGrade;
-    private int passCount;
-    private int failCount;
-    private int withdrewCount;
-    private int auditCount;
-    private int otherCount;
+    private String enrolled;
+    private String average;
+    private String stdDev;
+    private String highestGrade;
+    private String lowestGrade;
+    private String passCount;
+    private String failCount;
+    private String withdrewCount;
+    private String auditCount;
+    private String otherCount;
 
     private SQLHandler sql;
 
@@ -84,8 +84,56 @@ public class Model {
         return sectionList;
     }
 
-    public void updateYearList() {
-        yearList = FXCollections.observableArrayList(data.getUBCYears());
+    public String getCourseTitle() {
+        return courseTitle;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public String getEnrolled() {
+        return enrolled;
+    }
+
+    public String getAverage() {
+        return average;
+    }
+
+    public String getStdDev() {
+        return stdDev;
+    }
+
+    public String getHighestGrade() {
+        return highestGrade;
+    }
+
+    public String getLowestGrade() {
+        return lowestGrade;
+    }
+
+    public String getPassCount() {
+        return passCount;
+    }
+
+    public String getFailCount() {
+        return failCount;
+    }
+
+    public String getWithdrewCount() {
+        return withdrewCount;
+    }
+
+    public String getAuditCount() {
+        return auditCount;
+    }
+
+    public String getOtherCount() {
+        return otherCount;
     }
 
     public void updateSessionList() {
@@ -106,10 +154,89 @@ public class Model {
                 selectedSubject, selectedCourse));
     }
 
+    public void updateCourseTitle() {
+        courseTitle = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Title");
+    }
+    public void updateProfessor() {
+        professor = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Professor");
+    }
+    public void updateEnrolled() {
+        enrolled = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Enrolled");
+    }
+    public void updateAverage() {
+        average = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Avg");
+    }
+    public void updateStdDev() {
+        stdDev = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Stddev");
+    }
+    public void updateHigh() {
+        highestGrade = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "High");
+    }
+    public void updateLow() {
+        lowestGrade = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Low");
+    }
+    public void updatePassCount() {
+        passCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Pass");
+    }
+    public void updateFailCount() {
+        failCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Fail");
+    }
+    public void updateWithdrewCount() {
+        withdrewCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Withdrew");
+    }
+    public void updateAuditCount() {
+        auditCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Audit");
+    }
+    public void updateOtherCount() {
+        otherCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "Other");
+    }
+
+
+    public void updateData() {
+        updateCourseTitle();
+        updateProfessor();
+        updateEnrolled();
+        updateAverage();
+        updateStdDev();
+        updateHigh();
+        updateLow();
+        updatePassCount();
+        updateFailCount();
+        updateWithdrewCount();
+        updateAuditCount();
+        updateOtherCount();
+    }
+
+
     public void updateLists() {
         updateSubjectList();
         updateCourseList();
         updateSectionList();
     }
+
+    public static void main(String[] args) {
+        Model model = new Model();
+        model.setSelectedYear(2000);
+        model.setSelectedSection("OVERAll");
+        model.setSelectedCourse(100);
+        model.setSelectedSession("W");
+        model.setSelectedSubject("CPSC");
+        model.updateStdDev();
+        System.out.println(model.getStdDev());
+    }
+
+
 }
 

@@ -86,7 +86,7 @@
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font></Text>
-                  <Text fx:id="stddevLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+                  <Text fx:id="stdDevLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font></Text>
