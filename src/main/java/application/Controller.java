@@ -51,41 +51,36 @@ public class Controller {
 
     public void initialize() {
         model = new Model();
-        setupModelListeners();
         yearChoice.setItems(model.getYearList());
         sessionChoice.setItems(model.getSessionList());
+        setupListeners();
     }
 
-    public void setupModelListeners() {
+    public void setupListeners() {
         yearChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            model.setSelectedYear(newValue);
-            model.updateModel();
+            if (newValue != null) {model.setSelectedYear(newValue);}
+            model.updateLists();
             updateView();
         });
         sessionChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            model.setSelectedSession(newValue);
-            model.updateModel();
+            if (newValue != null) {model.setSelectedSession(newValue);}
+            model.updateLists();
+            System.out.println("test");
             updateView();
         });
         subjectChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                model.setSelectedSubject(newValue);
-            }
-            model.updateModel();
+            if (newValue != null) {model.setSelectedSubject(newValue);}
+            model.updateLists();
             updateView();
         });
         courseChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                model.setSelectedCourse(newValue);
-            }
-            model.updateModel();
+            if (newValue != null) {model.setSelectedCourse(newValue);}
+            model.updateLists();
             updateView();
         });
         sectionChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                model.setSelectedSection(newValue);
-            }
-            model.updateModel();
+            if (newValue != null) {model.setSelectedSection(newValue);}
+            model.updateLists();
             updateView();
         });
     }
@@ -95,6 +90,7 @@ public class Controller {
         courseChoice.setItems(model.getCourseList());
         sectionChoice.setItems(model.getSectionList());
     }
+
 
 }
 

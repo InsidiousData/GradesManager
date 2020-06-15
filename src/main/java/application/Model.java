@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 
 public class Model {
 
+    UBCGradesData data;
+
     //Selection fields
     private int selectedYear;
     private String selectedSession;
@@ -34,58 +36,12 @@ public class Model {
     private int auditCount;
     private int otherCount;
 
-    private SQLConnection sql;
+    private SQLHandler sql;
 
     public Model() {
-        sql = new SQLConnection();
-        updateYearList();
-        updateSessionList();
-        subjectList = FXCollections.observableArrayList();
-        courseList = FXCollections.observableArrayList();
-        sectionList = FXCollections.observableArrayList();
-    }
-
-    public void updateYearList() {
-        yearList = sql.getYearList();
-    }
-
-    public int getSelectedYear() {
-        return selectedYear;
-    }
-
-    public String getSelectedSession() {
-        return selectedSession;
-    }
-
-    public void updateSessionList() {
-        sessionList = sql.getSessionList();
-    }
-
-    public void updateSubjectList() {
-        if ((selectedYear != 0) && (selectedSession != null)) {
-            subjectList = sql.getSubjectList(selectedYear, selectedSession);
-        }
-        else {
-            subjectList.clear();
-        }
-    }
-
-    public void updateCourseList() {
-        if ((selectedYear != 0) && (selectedSession != null) && (selectedSubject != null)) {
-            courseList = sql.getCourseList(selectedYear, selectedSession, selectedSubject);
-        }
-        else {
-            courseList.clear();
-        }
-    }
-
-    public void updateSectionList() {
-        if ((selectedYear != 0) && (selectedSession != null) && (selectedSubject != null) && (selectedCourse != 0)) {
-            sectionList = sql.getSectionList(selectedYear, selectedSession, selectedSubject, selectedCourse);
-        }
-        else {
-            sectionList.clear();
-        }
+        data = new UBCGradesData();
+        yearList = FXCollections.observableArrayList(data.getUBCYears());
+        sessionList = FXCollections.observableArrayList(data.getUBCSessions());
     }
 
     public void setSelectedYear(int selectedYear) {
@@ -128,16 +84,32 @@ public class Model {
         return sectionList;
     }
 
-    public void updateModel() {
+    public void updateYearList() {
+        yearList = FXCollections.observableArrayList(data.getUBCYears());
+    }
+
+    public void updateSessionList() {
+        sessionList = FXCollections.observableArrayList(data.getUBCSessions());
+    }
+
+    public void updateSubjectList() {
+        subjectList = FXCollections.observableArrayList(data.getUBCSubjects(selectedYear, selectedSession));
+    }
+
+    public void updateCourseList() {
+        courseList = FXCollections.observableArrayList(data.getUBCCourses(selectedYear, selectedSession,
+                selectedSubject));
+    }
+
+    public void updateSectionList() {
+        sectionList = FXCollections.observableArrayList(data.getUBCSections(selectedYear, selectedSession,
+                selectedSubject, selectedCourse));
+    }
+
+    public void updateLists() {
         updateSubjectList();
         updateCourseList();
         updateSectionList();
-
-        sql.getCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse, selectedSection, "Title");
-
-
     }
-
-
 }
 
