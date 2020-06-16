@@ -36,6 +36,23 @@ public class Model {
     private String auditCount;
     private String otherCount;
 
+    //Data for graph
+    private int zerosRange;
+    private int tensRange;
+    private int twentiesRange;
+    private int thirtiesRange;
+    private int fortiesRange;
+    private int fiftiesFirstHalfRange;
+    private int fiftiesSecondHalfRange;
+    private int sixtiesFirstRange;
+    private int sixtiesSecondRange;
+    private int sixtiesThirdRange;
+    private int seventiesFirstRange;
+    private int seventiesSecondRange;
+    private int eightiesFirstHalfRange;
+    private int eightiesSecondHalfRange;
+    private int ninetiesRange;
+
     private SQLHandler sql;
 
     public Model() {
@@ -136,6 +153,66 @@ public class Model {
         return otherCount;
     }
 
+    public int getZerosRange() {
+        return zerosRange;
+    }
+
+    public int getTensRange() {
+        return tensRange;
+    }
+
+    public int getTwentiesRange() {
+        return twentiesRange;
+    }
+
+    public int getThirtiesRange() {
+        return thirtiesRange;
+    }
+
+    public int getFortiesRange() {
+        return fortiesRange;
+    }
+
+    public int getFiftiesFirstHalfRange() {
+        return fiftiesFirstHalfRange;
+    }
+
+    public int getFiftiesSecondHalfRange() {
+        return fiftiesSecondHalfRange;
+    }
+
+    public int getSixtiesFirstRange() {
+        return sixtiesFirstRange;
+    }
+
+    public int getSixtiesSecondRange() {
+        return sixtiesSecondRange;
+    }
+
+    public int getSixtiesThirdRange() {
+        return sixtiesThirdRange;
+    }
+
+    public int getSeventiesFirstRange() {
+        return seventiesFirstRange;
+    }
+
+    public int getSeventiesSecondRange() {
+        return seventiesSecondRange;
+    }
+
+    public int getEightiesFirstHalfRange() {
+        return eightiesFirstHalfRange;
+    }
+
+    public int getEightiesSecondHalfRange() {
+        return eightiesSecondHalfRange;
+    }
+
+    public int getNinetiesRange() {
+        return ninetiesRange;
+    }
+
     public void updateSessionList() {
         sessionList = FXCollections.observableArrayList(data.getUBCSessions());
     }
@@ -155,52 +232,119 @@ public class Model {
     }
 
     public void updateCourseTitle() {
-        courseTitle = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        courseTitle = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Title");
     }
     public void updateProfessor() {
-        professor = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        professor = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Professor");
     }
     public void updateEnrolled() {
-        enrolled = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        enrolled = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Enrolled");
     }
     public void updateAverage() {
-        average = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        average = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Avg");
     }
     public void updateStdDev() {
-        stdDev = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        stdDev = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Stddev");
     }
     public void updateHigh() {
-        highestGrade = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        highestGrade = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "High");
     }
     public void updateLow() {
-        lowestGrade = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        lowestGrade = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Low");
     }
     public void updatePassCount() {
-        passCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        passCount = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Pass");
     }
     public void updateFailCount() {
-        failCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        failCount = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Fail");
     }
     public void updateWithdrewCount() {
-        withdrewCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        withdrewCount = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Withdrew");
     }
     public void updateAuditCount() {
-        auditCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        auditCount = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Audit");
     }
     public void updateOtherCount() {
-        otherCount = data.getUBCCourseData(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        otherCount = data.getUBCCourseDataAsString(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "Other");
+    }
+
+    public void updateZeroesRange() {
+        zerosRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "0-9");
+    }
+
+    public void updateTensRange() {
+        tensRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "10-19");
+    }
+    public void updateTwentiesRange() {
+        twentiesRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "20-29");
+    }
+    public void updateThirtiesRange() {
+        thirtiesRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "30-39");
+    }
+    public void updateFortiesRange() {
+        fortiesRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "40-49");
+    }
+    public void updateFiftiesFirstHalfRange() {
+        fiftiesFirstHalfRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "50-54");
+
+    }
+    public void updateFiftiesSecondHalfRange() {
+        fiftiesSecondHalfRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "55-59");
+    }
+
+    public void updateSixtiesFirstRange() {
+        sixtiesFirstRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "60-64");
+    }
+    public void updateSixtiesSecondRange() {
+        sixtiesSecondRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "64-67");
+    }
+
+    public void updateSixtiesThirdRange() {
+        sixtiesThirdRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "68-71");
+    }
+
+    public void updateSeventiesFirstRange() {
+        seventiesFirstRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "72-75");
+    }
+    public void updateSeventiesSecondRange() {
+        seventiesSecondRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "76-79");
+    }
+    public void updateEightiesFirstHalfRange() {
+        eightiesFirstHalfRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "80-84");
+    }
+    public void updateEightiesSecondHalfRange() {
+        eightiesFirstHalfRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "85-89");
+    }
+    public void updateNinetiesRange() {
+        ninetiesRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+                selectedSection, "90-100");
+
     }
 
 
@@ -217,6 +361,26 @@ public class Model {
         updateWithdrewCount();
         updateAuditCount();
         updateOtherCount();
+
+        updateZeroesRange();
+        updateTensRange();
+        updateTwentiesRange();
+        updateThirtiesRange();
+        updateFortiesRange();
+        updateFiftiesFirstHalfRange();
+        updateFiftiesSecondHalfRange();
+
+        updateSixtiesFirstRange();
+        updateSixtiesSecondRange();
+        updateSixtiesThirdRange();
+
+        updateSeventiesFirstRange();
+        updateSeventiesSecondRange();
+
+        updateEightiesFirstHalfRange();
+        updateEightiesSecondHalfRange();
+
+        updateNinetiesRange();
     }
 
 

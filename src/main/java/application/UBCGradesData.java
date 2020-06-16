@@ -1,6 +1,5 @@
 package application;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -107,16 +106,13 @@ public class UBCGradesData {
         }
     }
 
-    public String getUBCCourseData(int year, String session, String subject, int course, String section, String columnLabel) {
+    public String getUBCCourseDataAsString(int year, String session, String subject, int course, String section, String columnLabel) {
         try {
-            String query = "SELECT DISTINCT " + columnLabel +" FROM UBC_ALL_DATA WHERE " +
+            String query = "SELECT DISTINCT \"" + columnLabel +"\" FROM UBC_ALL_DATA WHERE " +
                     "Year=" + year + " AND Session='" + session + "' AND " +
                     "Subject='" + subject +"' AND Course=" + course +" AND Section='" +
                     section + "';";
             ResultSet rs = stmt.executeQuery(query);
-//            if (rs.isClosed()) {
-//                return "";
-//            }
             String data = rs.getString(columnLabel);
             return data;
         } catch (Exception throwables) {
@@ -124,9 +120,23 @@ public class UBCGradesData {
         }
     }
 
+    public int getUBCCourseDataAsInteger(int year, String session, String subject, int course, String section, String columnLabel) {
+        try {
+            String query = "SELECT DISTINCT \"" + columnLabel + "\" FROM UBC_ALL_DATA WHERE " +
+                    "Year=" + year + " AND Session='" + session + "' AND " +
+                    "Subject='" + subject +"' AND Course=" + course +" AND Section='" +
+                    section + "';";
+            ResultSet rs = stmt.executeQuery(query);
+            int data = rs.getInt(columnLabel);
+            return data;
+        } catch (Exception throwables) {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         UBCGradesData grades = new UBCGradesData();
-        System.out.println(grades.getUBCCourseData(2000, "W", "CPSC", 100, "OVERALL", "Enrolled"));
+        System.out.println(grades.getUBCCourseDataAsInteger(2001, "W", "CPSC", 100, "OVERALL", "10-19"));
     }
 
 }

@@ -16,9 +16,10 @@ public class Main extends Application {
         loader.setLocation(getClass().getResource("/application.fxml"));
         Parent root = loader.load();
         //Parent root = FXMLLoader.load(getClass().getResource("application.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1100, 500));
+        primaryStage.setTitle("UBC Grade Manager");
+        primaryStage.setScene(new Scene(root, 1050, 550));
         primaryStage.show();
+        primaryStage.setResizable(false);
     }
 
     public static void main(String[] args) throws IOException {

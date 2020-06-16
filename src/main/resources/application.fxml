@@ -3,168 +3,157 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="927.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="550.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <TextFlow prefHeight="0.0" prefWidth="927.0" textAlignment="CENTER">
+      <Label layoutX="328.0" layoutY="19.0" prefWidth="440.0" text="Grade Manager">
+         <font>
+            <Font name="Roboto Light" size="60.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="77.0" fitWidth="99.0" layoutX="132.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@UBC-logo-2018-crest-blue-rgb72.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutY="102.0" prefHeight="58.0" prefWidth="1050.0" spacing="10.0" style="-fx-border-width: 10;" AnchorPane.leftAnchor="0.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="GradesManager" textAlignment="CENTER" wrappingWidth="225.73434448242188">
-               <font>
-                  <Font name="Roboto Light" size="32.0" />
-               </font></Text>
-         </children>
-      </TextFlow>
-      <HBox fx:id="selectionHBox" alignment="CENTER" prefHeight="68.0" prefWidth="600.0" spacing="10.0">
-         <children>
-            <Label text="Year:" />
-            <ComboBox fx:id="yearChoice" prefWidth="100.0" />
-            <Label text="Session:" />
-            <ComboBox fx:id="sessionChoice" prefWidth="80.0" />
-            <Label text="Subject:" />
-            <ComboBox fx:id="subjectChoice" prefWidth="150.0" />
-            <Label text="Course:" />
-            <ComboBox fx:id="courseChoice" prefWidth="80.0" />
-            <Label text="Section:" />
-            <ComboBox fx:id="sectionChoice" prefWidth="100.0" />
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="531.0" prefWidth="927.0">
-         <children>
-            <BarChart prefHeight="515.0" prefWidth="606.0" title="Grade Distribution">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <GridPane fx:id="gridPane" prefHeight="371.0" prefWidth="322.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="126.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.00000762939453" minWidth="10.0" prefWidth="195.2" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Text fx:id="courseLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="professorLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="enrolledLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="High" GridPane.halignment="LEFT" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="lowLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="stdDevLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="highLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="passLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="failLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="withdrewLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="auditLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="otherLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="11">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Professor" GridPane.halignment="LEFT" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enrolled" GridPane.halignment="LEFT" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Average:" GridPane.halignment="LEFT" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Standard deviation:" GridPane.halignment="LEFT" GridPane.rowIndex="4">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Low" GridPane.halignment="LEFT" GridPane.rowIndex="6">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pass" GridPane.halignment="LEFT" GridPane.rowIndex="7">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fail" GridPane.halignment="LEFT" GridPane.rowIndex="8">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Withdrew" GridPane.halignment="LEFT" GridPane.rowIndex="9">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Audit" GridPane.halignment="LEFT" GridPane.rowIndex="10">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Other" GridPane.halignment="LEFT" GridPane.rowIndex="11">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Title:" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-                  <Text fx:id="averageLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="select course" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3">
-                     <font>
-                        <Font name="Roboto Light" size="14.0" />
-                     </font></Text>
-               </children>
-            </GridPane>
+            <ComboBox fx:id="yearChoice" onAction="#handleComboBoxEvent" prefHeight="26.0" prefWidth="96.0" promptText="Year" />
+            <ComboBox fx:id="sessionChoice" onAction="#handleComboBoxEvent" prefHeight="26.0" prefWidth="121.0" promptText="Session" />
+            <ComboBox fx:id="subjectChoice" onAction="#handleComboBoxEvent" prefHeight="26.0" prefWidth="122.0" promptText="Subject" />
+            <ComboBox fx:id="courseChoice" onAction="#handleComboBoxEvent" prefHeight="26.0" prefWidth="137.0" promptText="Course" />
+            <ComboBox fx:id="sectionChoice" onAction="#handleComboBoxEvent" prefHeight="26.0" prefWidth="125.0" promptText="Section" />
          </children>
       </HBox>
+      <BarChart fx:id="gradeGraph" animated="false" layoutX="64.0" layoutY="171.0" legendVisible="false" prefHeight="350.0" prefWidth="450.0" style="-fx-border-color: black;" title="Grade Distribution">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <GridPane alignment="CENTER_RIGHT" gridLinesVisible="true" layoutX="552.0" layoutY="171.0" prefHeight="350.0" prefWidth="431.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="213.59999999999997" minWidth="10.0" prefWidth="69.6" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="316.80000000000007" minWidth="10.0" prefWidth="316.80000000000007" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Course Title:" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Professor:" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Enrolled:" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Average:" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Standard Deviation:" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Highest Grade:" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+             <Label text="Lowest Grade:" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+             <Label text="Passed:" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Failed:" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Withdrew:" GridPane.halignment="LEFT" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Audited:" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Other:" GridPane.halignment="LEFT" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Text fx:id="courseLabel" layoutX="38.0" layoutY="17.0" text="test" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+            <Text fx:id="professorLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+            <Text fx:id="enrolledLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="averageLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="stdDevLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="highLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="lowLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="passLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="failLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="8" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="withdrewLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="auditLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="10" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+             <Text fx:id="otherLabel" layoutX="38.0" layoutY="17.0" text="Course Title:" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Text>
+
+         </children>
+      </GridPane>
    </children>
-</VBox>
+</AnchorPane>
