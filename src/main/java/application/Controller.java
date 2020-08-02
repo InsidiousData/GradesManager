@@ -66,35 +66,32 @@ public class Controller {
 
     public void handleComboBoxEvent(Event e) {
         ComboBox cb = (ComboBox) e.getSource();
-            switch(cb.getId()) {
+        String id = cb.getId();
+        Object value = cb.getValue();
+            switch(id) {
             case "yearChoice":
-                Integer year = (Integer) cb.getValue();
-                if (year != null) {
-                    model.setSelectedYear(year);
+                if (value != null) {
+                    model.setSelectedYear((Integer) value);
                 }
                 break;
             case "sessionChoice":
-                String session = (String) cb.getValue();
-                if (session != null) {
-                    model.setSelectedSession(session);
+                if (value != null) {
+                    model.setSelectedSession((String) value);
                 }
                 break;
             case "subjectChoice":
-                String subject = (String) cb.getValue();
-                if (subject != null) {
-                    model.setSelectedSubject(subject);
+                if (value != null) {
+                    model.setSelectedSubject((String) value);
                 }
                 break;
             case "courseChoice":
-                Integer course = (Integer) cb.getValue();
-                if (course != null) {
-                    model.setSelectedCourse(course);
+                if (value != null) {
+                    model.setSelectedCourse((Integer) value);
                 }
                 break;
             case "sectionChoice":
-                String section = (String) cb.getValue();
-                if (section != null) {
-                    model.setSelectedSection(section);
+                if (value != null) {
+                    model.setSelectedSection((String) value);
                 }
                 break;
         }
