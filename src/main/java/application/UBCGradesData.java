@@ -9,6 +9,10 @@ public class UBCGradesData {
 
     SQLHandler sql;
     Statement stmt;
+    String test;
+
+
+
 
     public UBCGradesData() {
         sql = new SQLHandler();
