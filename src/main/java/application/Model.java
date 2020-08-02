@@ -22,6 +22,7 @@ public class Model {
     private ObservableList<String> sectionList;
 
     //Statistics for selected course
+    //TODO: make sure to incorporate course 'detail'
     private String courseTitle;
     private String detail;
     private String professor;
@@ -313,7 +314,7 @@ public class Model {
 
     public void updateSixtiesFirstRange() {
         sixtiesFirstRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
-                selectedSection, "60-64");
+                selectedSection, "60-63");
     }
     public void updateSixtiesSecondRange() {
         sixtiesSecondRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
@@ -338,7 +339,7 @@ public class Model {
                 selectedSection, "80-84");
     }
     public void updateEightiesSecondHalfRange() {
-        eightiesFirstHalfRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
+        eightiesSecondHalfRange = data.getUBCCourseDataAsInteger(selectedYear, selectedSession, selectedSubject, selectedCourse,
                 selectedSection, "85-89");
     }
     public void updateNinetiesRange() {

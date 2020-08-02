@@ -1,5 +1,6 @@
 package application;
 
+import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -8,6 +9,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 
@@ -62,6 +64,7 @@ public class Controller {
         model = new Model();
         yearChoice.setItems(model.getYearList());
         sessionChoice.setItems(model.getSessionList());
+        updateGraph();
     }
 
     public void handleComboBoxEvent(Event e) {
@@ -123,6 +126,7 @@ public class Controller {
     }
 
     public void updateGraph() {
+        System.out.println("graph updated");
         gradeGraph.getData().clear();
         XYChart.Series grades = new XYChart.Series();
 
@@ -143,8 +147,6 @@ public class Controller {
         grades.getData().add(new XYChart.Data("90-100", model.getNinetiesRange()));
 
         gradeGraph.getData().add(grades);
-
-
     }
 
 
